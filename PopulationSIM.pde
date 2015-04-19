@@ -9,11 +9,10 @@
  Request(B): can we call People.torus People.wrap? I think it'd be easier to recognise its purpose.
  -------------------------------*/
 float n = 2;
-int starting = 100;
+int starting = 200;
 int p = 10; 
 int tick=0;
 public ArrayList Population;
-
 public ArrayList<PVector> Generation = new ArrayList<PVector>();
 
 void setup() {
