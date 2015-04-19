@@ -14,7 +14,7 @@ class People {
   int state=0; //MOVING, the default
   int cooldown=200; //Used to keep them from spamming kids. Starts at 200 cause we don't want the kids banging each other
   final int STD_CD=100; //standard cooldoun ticks
-  int generation;
+  float generation;
   People bro; //This is the guy we is interacting with
   //Movement
   float x;
@@ -30,7 +30,7 @@ class People {
   final float INTER_DIST=24;
   final float INTER_K=20;
   
-  People(float _x, float _y, int _t,int _g) {
+  People(float _x, float _y, int _t,float _g) {
     x = _x;
     y = _y;
     start_tick = _t;
@@ -72,7 +72,7 @@ class People {
   }
 
   void baby() {
-    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick,(generation+bro.generation)/2+1);
+    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick,(generation+bro.generation)/2f+1f);
     Population.add(peep);
   }
   
