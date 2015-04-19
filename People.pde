@@ -9,7 +9,7 @@ class People {
   int lifeEX = 0;
   boolean alive = true;
   
-  final int LIFETIME=800;
+  final int LIFETIME=1000;
   
   int state=0; //MOVING, the default
   int cooldown=200; //Used to keep them from spamming kids. Starts at 200 cause we don't want the kids banging each other
@@ -34,7 +34,7 @@ class People {
     x = _x;
     y = _y;
     start_tick = _t;
-    lifeEX = _t + floor(random(-100,100));
+    lifeEX = _t + floor(random(-100,200));
     generation=_g;
   } 
 
