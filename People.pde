@@ -62,12 +62,11 @@ class People {
     noisePosition.add(N_MOVE);
     x +=v.x;
     y +=v.y;
-    return v;
   }
 
   void display() {
     if (alive == true) { 
-      ellipse(x, y, 20, 20);
+      ellipse(x, y, 30, 30);
     }
   }
 
@@ -76,6 +75,4 @@ class People {
     return PVector.mult(new PVector(noise(coords.x)-0.5f, noise(coords.y)-0.5f), 2*SHEEP_SPEED);
   }
 }
-
-
 
