@@ -65,13 +65,8 @@ class People {
 
   void display() {
     if (alive == true) { 
-<<<<<<< .merge_file_a99776
-      ellipse(x, y, 30, 30);
-=======
       fill(30 - start_tick, 60 + start_tick, 90 + start_tick);
       ellipse(x, y, 20, 20);
-      
->>>>>>> .merge_file_a03368
     }
   }
 

@@ -5,23 +5,17 @@
 //Anthony Catalano-Johnson//
 
 /*-----------ChangeLog-----------
-<<<<<<< HEAD
  Change(B): To make system more general, I've switched it to use a tick counter in place of frame counter.
  Request(B): can we call People.torus People.wrap? I think it'd be easier to recognise its purpose.
-=======
-
->>>>>>> master
  -------------------------------*/
 float n = 2;
 int starting = 100;
 int p = 10; 
 int tick=0;
 public ArrayList Population;
-<<<<<<< HEAD
-public ArrayList<PVector> Generation = (ArrayList<PVector>) new ArrayList[];
-=======
-public ArrayList<PVector>[] Generation;
->>>>>>> Coloring_Generations
+
+public ArrayList<PVector> Generation = new ArrayList<PVector>();
+
 void setup() {
   size(1280, 755);
   noStroke();
@@ -51,34 +45,8 @@ void draw() {
       Population.remove(i);
     }
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- /////////////////////////////////////////////////////////////////////////////// 
- for (int k = 0; k < Population.size (); k++) {
-    if (Population.get(k)) {
-      for (int i = 0; i < k; i++) {
-        if (Population.get(i).move > Population.get(k).move) { // WHAT IS THIS??????
-        }
-      }
-    }
-  }
-  // println(wi + " " + wk);
-  /*for (int i = 0; i < Population.size (); i++) {
-   for (int k = 0; k < Population.size (); k++) {
-   if(Population.size(i) == Population.size(k)){
-   fill(30, 60, 90);
-   People Person = new People(random(0, width), random(0, height), tick);
-   Population.add(Person);
-   }
-   }
-   }*/
-///////////////////////////////////////////////////////////////////////////////////
->>>>>>> master
+
   println(Population.size());
-=======
-   println(Population.size());
->>>>>>> Coloring_Generations
 }
 
 void VFill(int i) {  
