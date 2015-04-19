@@ -6,8 +6,16 @@
 class People {
   int start_tick;
   int kolor = 0; 
+  int lifeEX = 0;
   boolean alive = true;
-
+  
+  final int LIFETIME=800;
+  
+  int state=0; //MOVING, the default
+  int cooldown=200; //Used to keep them from spamming kids. Starts at 200 cause we don't want the kids banging each other
+  final int STD_CD=100; //standard cooldoun ticks
+  int generation;
+  People bro; //This is the guy we is interacting with
   //Movement
   float x;
   float y;
@@ -15,22 +23,39 @@ class People {
   final private PVector N_MOVE=new PVector(0.01, 0.01); // This sets the speed to move across the Perlin Noise.
   float SHEEP_SPEED=2f;  //Coefficient of moving
 
-  People(float _x, float _y, int _t) {
+  final private int MOVING=0;
+  final private int INTERACTING=1;
+  final private int INTERACTED=2;  //Someone else is interacting with us
+  
+  final float INTER_DIST=24;
+  final float INTER_K=20;
+  
+  People(float _x, float _y, int _t,int _g) {
     x = _x;
     y = _y;
     start_tick = _t;
+    lifeEX = _t + floor(random(-100,100));
+    generation=_g;
   } 
 
-  boolean life() {
+  boolean life(int id) {
     display();
-    move();
-    wrap();
-    baby();
+    if (state==MOVING) {
+      move();
+      wrap();
+      social(id); //Interactions
+    }
+    if (state==INTERACTING) {
+      interact();
+    }
+    if (state==INTERACTED) {
+      //do nothing
+    }
     return death();
   }
 
   boolean death() {
-    if ((tick - start_tick) > 500) {
+    if ((tick - lifeEX) > LIFETIME) {
       alive = false;
       return false;
     } else {
@@ -38,9 +63,46 @@ class People {
     }
   }
 
+  void social(int id) {
+    if (cooldown<1) {
+      interact_scan(id);
+    } else {
+      cooldown--;
+    }
+  }
 
   void baby() {
-    
+    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick,(generation+bro.generation)/2+1);
+    Population.add(peep);
+  }
+  
+  void interact_scan(int i) { //Gets own id number
+    //checks all previous people
+
+    for (i=i-1; i > -1; i--) {
+      People person = (People) Population.get(i);
+      if (person.cooldown<1) {
+        float dist=dist(x, y, person.x, person.y);
+        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(Population.size(),0,500,1.5f,0.1f);
+        if (K>random(1)) {
+          state=INTERACTING;
+          bro=person;
+          bro.state=INTERACTED;
+          break;
+        }
+      }
+    }
+  }
+  
+  void interact(){
+    if(0.01<random(1)){
+      baby();
+      state=MOVING;
+      bro.state=MOVING;
+      bro.cooldown=STD_CD;
+      cooldown=STD_CD;
+      bro=null;
+    }
   }
 
   void wrap() {
@@ -65,7 +127,7 @@ class People {
 
   void display() {
     if (alive == true) { 
-      fill(30 - start_tick, 60 + start_tick, 90 + start_tick);
+      fill(generation*50,20,255);
       ellipse(x, y, 20, 20);
     }
   }
@@ -74,5 +136,9 @@ class People {
     //Accepts PVector of noise coords, and returns PVector of noise in [-PEEP_SPEED, PEEP_SPEED]
     return PVector.mult(new PVector(noise(coords.x)-0.5f, noise(coords.y)-0.5f), 2*SHEEP_SPEED);
   }
+}
+
+float clamp(float min, float max, float val) {
+  return max(min, min(max, val));
 }
 
