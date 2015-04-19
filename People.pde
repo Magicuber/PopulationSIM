@@ -127,11 +127,7 @@ class People {
 
   void display() {
     if (alive == true) { 
-<<<<<<< .merge_file_a91696
       fill((generation*50)%255,255,255);
-=======
-      fill(generation*50,20,255/generation);
->>>>>>> .merge_file_a91716
       ellipse(x, y, 20, 20);
     }
   }
