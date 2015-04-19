@@ -6,8 +6,7 @@
  
 
 /*-----------ChangeLog-----------
-Update(C):Looking for ways to check overlap
-Response(C):where do you want to call  People.torus
+
  -------------------------------*/
 float n = 2;
 int starting = 100;
@@ -50,7 +49,7 @@ void draw() {
  for (int k = 0; k < Population.size (); k++) {
     if (Population.get(k)) {
       for (int i = 0; i < k; i++) {
-        if (Population.get(i).move > Population.get(k).move) {
+        if (Population.get(i).move > Population.get(k).move) { // WHAT IS THIS??????
         }
       }
     }
