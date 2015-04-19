@@ -127,7 +127,7 @@ class People {
 
   void display() {
     if (alive == true) { 
-      fill(generation*50,20,255);
+      fill(generation*50,20,255/generation);
       ellipse(x, y, 20, 20);
     }
   }
