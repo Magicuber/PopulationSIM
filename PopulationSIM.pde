@@ -12,10 +12,9 @@ Response(C):where do you want to call  People.torus
 float n = 2;
 int starting = 100;
 int p = 10; 
-public ArrayList Population;
-
 int tick=0;
-
+public ArrayList Population;
+public ArrayList<PVector>[] Generation;
 void setup() {
   size(1280, 755);
   noStroke();
@@ -46,27 +45,7 @@ void draw() {
       Population.remove(i);
     }
   }
- /////////////////////////////////////////////////////////////////////////////// 
- for (int k = 0; k < Population.size (); k++) {
-    if (Population.get(k)) {
-      for (int i = 0; i < k; i++) {
-        if (Population.get(i).move > Population.get(k).move) {
-        }
-      }
-    }
-  }
-  // println(wi + " " + wk);
-  /*for (int i = 0; i < Population.size (); i++) {
-   for (int k = 0; k < Population.size (); k++) {
-   if(Population.size(i) == Population.size(k)){
-   fill(30, 60, 90);
-   People Person = new People(random(0, width), random(0, height), tick);
-   Population.add(Person);
-   }
-   }
-   }*/
-///////////////////////////////////////////////////////////////////////////////////
-  println(Population.size());
+   println(Population.size());
 }
 
 

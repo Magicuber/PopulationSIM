@@ -8,6 +8,7 @@ class People {
   int b = 5;
   int a = -b;
   int start_tick;
+  int kolor = 0; 
   boolean alive = true;
 
   //Movement
@@ -42,6 +43,7 @@ class People {
 
 
   void baby() {
+    
   }
 
   void wrap() {
@@ -62,12 +64,13 @@ class People {
     noisePosition.add(N_MOVE);
     x +=v.x;
     y +=v.y;
-    return v;
   }
 
   void display() {
     if (alive == true) { 
+      fill(30 - start_tick, 60 + start_tick, 90 + start_tick);
       ellipse(x, y, 20, 20);
+      
     }
   }
 
