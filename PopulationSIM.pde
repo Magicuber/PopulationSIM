@@ -17,7 +17,11 @@ int starting = 100;
 int p = 10; 
 int tick=0;
 public ArrayList Population;
+<<<<<<< HEAD
 public ArrayList<PVector> Generation = (ArrayList<PVector>) new ArrayList[];
+=======
+public ArrayList<PVector>[] Generation;
+>>>>>>> Coloring_Generations
 void setup() {
   size(1280, 755);
   noStroke();
@@ -48,6 +52,7 @@ void draw() {
     }
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  /////////////////////////////////////////////////////////////////////////////// 
  for (int k = 0; k < Population.size (); k++) {
@@ -71,6 +76,9 @@ void draw() {
 ///////////////////////////////////////////////////////////////////////////////////
 >>>>>>> master
   println(Population.size());
+=======
+   println(Population.size());
+>>>>>>> Coloring_Generations
 }
 
 void VFill(int i) {  
