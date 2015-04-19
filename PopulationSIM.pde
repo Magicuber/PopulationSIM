@@ -5,8 +5,12 @@
 //Anthony Catalano-Johnson//
 
 /*-----------ChangeLog-----------
+<<<<<<< HEAD
  Change(B): To make system more general, I've switched it to use a tick counter in place of frame counter.
  Request(B): can we call People.torus People.wrap? I think it'd be easier to recognise its purpose.
+=======
+
+>>>>>>> master
  -------------------------------*/
 float n = 2;
 int starting = 100;
@@ -43,6 +47,29 @@ void draw() {
       Population.remove(i);
     }
   }
+<<<<<<< HEAD
+=======
+ /////////////////////////////////////////////////////////////////////////////// 
+ for (int k = 0; k < Population.size (); k++) {
+    if (Population.get(k)) {
+      for (int i = 0; i < k; i++) {
+        if (Population.get(i).move > Population.get(k).move) { // WHAT IS THIS??????
+        }
+      }
+    }
+  }
+  // println(wi + " " + wk);
+  /*for (int i = 0; i < Population.size (); i++) {
+   for (int k = 0; k < Population.size (); k++) {
+   if(Population.size(i) == Population.size(k)){
+   fill(30, 60, 90);
+   People Person = new People(random(0, width), random(0, height), tick);
+   Population.add(Person);
+   }
+   }
+   }*/
+///////////////////////////////////////////////////////////////////////////////////
+>>>>>>> master
   println(Population.size());
 }
 

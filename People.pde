@@ -4,9 +4,6 @@
 //This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 //Anthony Catalano-Johnson//
 class People {
-  float n = 2;
-  int b = 5;
-  int a = -b;
   int start_tick;
   boolean alive = true;
 
