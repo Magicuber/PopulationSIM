@@ -26,7 +26,7 @@ class People {
   boolean life() {
     display();
     move();
-    torus();
+    wrap();
     baby();
     return death();
   }
@@ -44,7 +44,7 @@ class People {
   void baby() {
   }
 
-  void torus() {
+  void wrap() {
     if (x > width) {
       x = x - width;
     } else if (x < 0) {
