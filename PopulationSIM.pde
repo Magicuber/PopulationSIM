@@ -35,13 +35,13 @@ void draw() {
   fill(0, p);
   rect(0, 0, width, height);
   //background(0);
-  //People Person = new People(random(0, width), random(0, height), tick);
+  //People Person = new People(random(0, width), random(0, height), tick,tick);
   //Population.add(Person);
 
   for (int i = Population.size () - 1; i > -1; i--) {
     People Person2 = (People) Population.get(i);
     boolean is_dead = Person2.life(i);
-    fill(30 - frameCount, 60 + frameCount, 90 + frameCount);
+    //fill(30 - frameCount, 60 + frameCount, 90 + frameCount);
     if (!is_dead) {
       Population.remove(i);
     }
@@ -49,10 +49,4 @@ void draw() {
 
   println(Population.size());
 }
-
-
-//WHAT IS THIS???????????????????? @BW
-//void VFill(int i) {  
-//  fill(30 - tick, 60 + tick, 90 + tick);  //breaks PVector 'v' to an array of floats to color circles 
-//}
 

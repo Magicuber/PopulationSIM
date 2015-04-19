@@ -6,6 +6,7 @@
 class People {
   int start_tick;
   int kolor = 0; 
+  int lifeEX = 0;
   boolean alive = true;
   
   final int LIFETIME=800;
@@ -33,6 +34,7 @@ class People {
     x = _x;
     y = _y;
     start_tick = _t;
+    lifeEX = _t + floor(random(-100,100));
     generation=_g;
   } 
 
@@ -53,7 +55,7 @@ class People {
   }
 
   boolean death() {
-    if ((tick - start_tick) > LIFETIME) {
+    if ((tick - lifeEX) > LIFETIME) {
       alive = false;
       return false;
     } else {
@@ -125,7 +127,7 @@ class People {
 
   void display() {
     if (alive == true) { 
-      fill(30 - start_tick, 60 + start_tick, 90 + start_tick);
+      fill(generation*50,20,255);
       ellipse(x, y, 20, 20);
     }
   }
