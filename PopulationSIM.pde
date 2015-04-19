@@ -19,6 +19,7 @@ public ArrayList<PVector> Generation = new ArrayList<PVector>();
 void setup() {
   size(1280, 755);
   noStroke();
+  colorMode(HSB);
   smooth(8);
   frameRate(1000000);
   Population = new ArrayList();
