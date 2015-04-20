@@ -9,7 +9,7 @@
  Request(B): can we call People.torus People.wrap? I think it'd be easier to recognise its purpose.
  -------------------------------*/
 float n = 2;
-int starting = 200;
+int starting = 1000;
 int p = 10; 
 int tick=0;
 public ArrayList Population;
@@ -35,8 +35,8 @@ void draw() {
   fill(0, p);
   rect(0, 0, width, height);
   //background(0);
-  //People Person = new People(random(0, width), random(0, height), tick,tick);
-  //Population.add(Person);
+  People Person = new People(random(0, width), random(0, height), tick,tick);
+  Population.add(Person);
 
   for (int i = Population.size () - 1; i > -1; i--) {
     People Person2 = (People) Population.get(i);
