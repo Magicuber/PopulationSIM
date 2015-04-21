@@ -16,7 +16,7 @@ class People {
   
   int state=0; //MOVING, the default
   int cooldown=200; //Used to keep them from spamming kids. Starts at 200 cause we don't want the kids banging each other
-  final int STD_CD=100; //standard cooldoun ticks
+  final int STD_CD=100; //standard cooldown ticks
   float generation;
   People bro; //This is the guy we is interacting with
   //Movement
@@ -33,6 +33,28 @@ class People {
   final float INTER_DIST=24;
   final float INTER_K=20;
   
+  People() {
+    x = random(0,width);
+    y = random(0,height);
+    start_tick = 0;
+    lifeEX = _t + floor(random(-100,200));
+    generation=1;
+    typeA = 0;
+    typeB = 0;
+    typeC = 0;
+  }
+  
+  People(float _x, float _y, int _t,float _g) {
+    x = _x;
+    y = _y;
+    start_tick = _t;
+    lifeEX = _t + floor(random(-100,200));
+    generation=_g;
+    typeA = 0;
+    typeB = 0;
+    typeC = 0;
+  }
+  
   People(float _x, float _y, int _t,float _g, int _a, int _b, int _c) {
     x = _x;
     y = _y;
@@ -43,7 +65,7 @@ class People {
     typeB = _b;
     typeC = _c;
   } 
-
+  
   boolean life(int id) {
     display();
     if (state==MOVING) {
