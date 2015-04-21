@@ -7,3 +7,9 @@
 float clamp(float min, float max, float val) {
   return max(min, min(max, val));
 }
+
+void mkPeep() {
+  People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0, 10)), floor(random(0, 10)), floor(random(0, 10)));
+  Population.add(person);
+}
+

@@ -18,9 +18,7 @@ void setup() {
   frameRate(1000000);
   Population = new ArrayList();
   for (int i = 0; i < starting; i++) {
-    People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0, 10)), floor(random(0, 10)), floor(random(0, 10)));
-    Population.add(person);
-    fill(30, 60, 90);
+    mkPeep();
   }
 }
 
@@ -62,4 +60,5 @@ void keyPressed() {
   if(keyCode==DOWN)getHist(-1);
   if(keyCode==UP)getHist(1);
 }
+
 
