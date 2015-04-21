@@ -78,7 +78,7 @@ class People {
   }
 
   void baby() {
-    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick,(generation+bro.generation)/2f+1f, (typeA+bro.typeA)/2+1, (typeB+bro.typeB)/2+1, (typeC+bro.typeC)/2+1);
+    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick,(generation+bro.generation)/2f+1f, (typeA+bro.typeA)/2+floor(random(-3,3)), (typeB+bro.typeB)/2+floor(random(-3,3)), (typeC+bro.typeC)/2+floor(random(-3,3)));
     Population.add(peep);
   }
   
