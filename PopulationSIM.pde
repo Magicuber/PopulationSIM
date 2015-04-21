@@ -38,27 +38,26 @@ void draw() {
       Population.remove(i);
     }
   }
-  
+
   drawCmd();
   //println(Population.size());
 }
 
 
 void keyPressed() {
-  if (keyCode==BACKSPACE) {
+  println(keyCode);
+  if (keyCode==8) {
     if (cmdLine.length()!=0) {
-      cmdLine=cmdLine.substring(cmdLine.length()-1);
+      cmdLine=cmdLine.substring(0, cmdLine.length()-1);
     }
-  }
-  if (key!=CODED) {
+  } else   if (key!=CODED) {
     if (key==ENTER) {
       doCmd();
     } else {
       cmdLine+=key;
     }
   }
-  if(keyCode==DOWN)getHist(-1);
-  if(keyCode==UP)getHist(1);
+  if (keyCode==DOWN)getHist(-1);
+  if (keyCode==UP)getHist(1);
 }
-
 
