@@ -7,6 +7,9 @@ class People {
   int start_tick;
   int kolor = 0; 
   int lifeEX = 0;
+  int typeA = 0;
+  int typeB = 0;
+  int typeC = 0;
   boolean alive = true;
   
   final int LIFETIME=1000;
@@ -30,12 +33,15 @@ class People {
   final float INTER_DIST=24;
   final float INTER_K=20;
   
-  People(float _x, float _y, int _t,float _g) {
+  People(float _x, float _y, int _t,float _g, int _a, int _b, int _c) {
     x = _x;
     y = _y;
     start_tick = _t;
     lifeEX = _t + floor(random(-100,200));
     generation=_g;
+    typeA = _a;
+    typeB = _b;
+    typeC = _c;
   } 
 
   boolean life(int id) {
@@ -72,7 +78,7 @@ class People {
   }
 
   void baby() {
-    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick,(generation+bro.generation)/2f+1f);
+    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick,(generation+bro.generation)/2f+1f, (typeA+bro.typeA)/2+1, (typeB+bro.typeB)/2+1, (typeC+bro.typeC)/2+1);
     Population.add(peep);
   }
   
@@ -83,7 +89,7 @@ class People {
       People person = (People) Population.get(i);
       if (person.cooldown<1) {
         float dist=dist(x, y, person.x, person.y);
-        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(Population.size(),0,500,1.5f,0.1f);
+        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(Population.size(),0,1000,1.5f,0.1f);
         if (K>random(1)) {
           state=INTERACTING;
           bro=person;
