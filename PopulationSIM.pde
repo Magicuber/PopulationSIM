@@ -9,9 +9,10 @@
  Request(B): can we call People.torus People.wrap? I think it'd be easier to recognise its purpose.
  -------------------------------*/
 float n = 2;
-int starting = 1000;
+int starting = 10;
 int p = 10; 
 int tick=0;
+int size = 100;
 public ArrayList Population;
 public ArrayList<PVector> Generation = new ArrayList<PVector>();
 
@@ -23,7 +24,7 @@ void setup() {
   frameRate(1000000);
   Population = new ArrayList();
   for (int i = 0; i < starting; i++) {
-    People Person = new People(random(0, width), random(0, height), tick,1);
+    People Person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
     Population.add(Person);
     fill(30, 60, 90);
   }
@@ -35,9 +36,10 @@ void draw() {
   fill(0, p);
   rect(0, 0, width, height);
   //background(0);
-  People Person = new People(random(0, width), random(0, height), tick,tick);
-  Population.add(Person);
-
+  if (tick <= size) {
+    People Person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
+    Population.add(Person);
+  }
   for (int i = Population.size () - 1; i > -1; i--) {
     People Person2 = (People) Population.get(i);
     boolean is_dead = Person2.life(i);
@@ -48,5 +50,8 @@ void draw() {
   }
 
   println(Population.size());
+  /*if(tick == 1000){
+    tick = 0;
+  }*/
 }
 
