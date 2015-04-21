@@ -1,8 +1,9 @@
 //--------------------------------------------------------------------------------
-//--------------------------------CLASS TAB--------------------------------
+//--------------------------------PEOPLE TAB--------------------------------------
 //--------------------------------------------------------------------------------
 //This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 //Anthony Catalano-Johnson//
+//Benjamin Welsh//
 class People {
   int start_tick;
   int kolor = 0; 
@@ -37,7 +38,7 @@ class People {
     x = random(0,width);
     y = random(0,height);
     start_tick = 0;
-    lifeEX = _t + floor(random(-100,200));
+    lifeEX = 0 + floor(random(-100,200));
     generation=1;
     typeA = 0;
     typeB = 0;
@@ -164,9 +165,5 @@ class People {
     //Accepts PVector of noise coords, and returns PVector of noise in [-PEEP_SPEED, PEEP_SPEED]
     return PVector.mult(new PVector(noise(coords.x)-0.5f, noise(coords.y)-0.5f), 2*SHEEP_SPEED);
   }
-}
-
-float clamp(float min, float max, float val) {
-  return max(min, min(max, val));
 }
 

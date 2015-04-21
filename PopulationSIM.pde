@@ -1,20 +1,14 @@
 //--------------------------------------------------------------------------------
-//--------------------------------MAIN  TAB---------------------------------
+//--------------------------------MAIN  TAB---------------------------------------
 //--------------------------------------------------------------------------------
 //This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 //Anthony Catalano-Johnson//
-
-/*-----------ChangeLog-----------
- Change(B): To make system more general, I've switched it to use a tick counter in place of frame counter.
- Request(B): can we call People.torus People.wrap? I think it'd be easier to recognise its purpose.
- -------------------------------*/
-float n = 2;
+//Benjamin Welsh//
 int starting = 10;
 int p = 10; 
 int tick=0;
 int size = 100;
 public ArrayList Population;
-public ArrayList<PVector> Generation = new ArrayList<PVector>();
 
 void setup() {
   size(1280, 755);
@@ -24,8 +18,8 @@ void setup() {
   frameRate(1000000);
   Population = new ArrayList();
   for (int i = 0; i < starting; i++) {
-    People Person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
-    Population.add(Person);
+    People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0, 10)), floor(random(0, 10)), floor(random(0, 10)));
+    Population.add(person);
     fill(30, 60, 90);
   }
 }
@@ -35,23 +29,37 @@ void draw() {
   tick++;
   fill(0, p);
   rect(0, 0, width, height);
-  //background(0);
-  if (tick <= size) {
-    People Person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
-    Population.add(Person);
-  }
+  //if (tick <= size) {
+  //  People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
+  //  Population.add(Person);
+  //}
   for (int i = Population.size () - 1; i > -1; i--) {
-    People Person2 = (People) Population.get(i);
-    boolean is_dead = Person2.life(i);
-    //fill(30 - frameCount, 60 + frameCount, 90 + frameCount);
+    People person = (People) Population.get(i);
+    boolean is_dead = person.life(i);
     if (!is_dead) {
       Population.remove(i);
     }
   }
+  
+  drawCmd();
+  //println(Population.size());
+}
 
-  println(Population.size());
-  /*if(tick == 1000){
-    tick = 0;
-  }*/
+
+void keyPressed() {
+  if (keyCode==BACKSPACE) {
+    if (cmdLine.length()!=0) {
+      cmdLine=cmdLine.substring(cmdLine.length()-1);
+    }
+  }
+  if (key!=CODED) {
+    if (key==ENTER) {
+      doCmd();
+    } else {
+      cmdLine+=key;
+    }
+  }
+  if(keyCode==DOWN)getHist(-1);
+  if(keyCode==UP)getHist(1);
 }
 
