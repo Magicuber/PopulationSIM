@@ -12,9 +12,9 @@ class People {
   int typeB = 0;
   int typeC = 0;
   boolean alive = true;
-  
+
   final int LIFETIME=1000;
-  
+
   int state=0; //MOVING, the default
   int cooldown=200; //Used to keep them from spamming kids. Starts at 200 cause we don't want the kids banging each other
   final int STD_CD=100; //standard cooldown ticks
@@ -23,6 +23,7 @@ class People {
   //Movement
   float x;
   float y;
+  float sickness;
   PVector noisePosition = new PVector(random(100000), random(100000)); // Position in the Noise
   final private PVector N_MOVE=new PVector(0.01, 0.01); // This sets the speed to move across the Perlin Noise.
   float SHEEP_SPEED=2f;  //Coefficient of moving
@@ -30,43 +31,58 @@ class People {
   final private int MOVING=0;
   final private int INTERACTING=1;
   final private int INTERACTED=2;  //Someone else is interacting with us
-  
+
   final float INTER_DIST=24;
   final float INTER_K=20;
-  
+
   People() {
-    x = random(0,width);
-    y = random(0,height);
+    x = random(0, width);
+    y = random(0, height);
     start_tick = 0;
-    lifeEX = 0 + floor(random(-100,200));
+    lifeEX = 0 + floor(random(-100, 200));
     generation=1;
     typeA = 0;
     typeB = 0;
     typeC = 0;
+    sickness = 0;
   }
-  
-  People(float _x, float _y, int _t,float _g) {
+
+  People(float _x, float _y, int _t, float _g) {
     x = _x;
     y = _y;
     start_tick = _t;
-    lifeEX = _t + floor(random(-100,200));
+    lifeEX = _t + floor(random(-100, 200));
     generation=_g;
     typeA = 0;
     typeB = 0;
     typeC = 0;
+    sickness = 0;
   }
-  
-  People(float _x, float _y, int _t,float _g, int _a, int _b, int _c) {
+
+  People(float _x, float _y, int _t, float _g, int _a, int _b, int _c) {
     x = _x;
     y = _y;
     start_tick = _t;
-    lifeEX = _t + floor(random(-100,200));
+    lifeEX = _t + floor(random(-100, 200));
     generation=_g;
     typeA = _a;
     typeB = _b;
     typeC = _c;
+    sickness = 0;
   } 
-  
+
+  People(float _x, float _y, int _t, float _g, int _a, int _b, int _c, float _s) {
+    x = _x;
+    y = _y;
+    start_tick = _t;
+    lifeEX = _t + floor(random(-100, 200));
+    generation=_g;
+    typeA = _a;
+    typeB = _b;
+    typeC = _c;
+    sickness = 0;
+  } 
+
   boolean life(int id) {
     display();
     if (state==MOVING) {
@@ -81,6 +97,13 @@ class People {
       //do nothing
     }
     return death();
+  }
+
+  void sick() {
+    if (sickness == 1) {
+      People peep=new People(random(0, width), random(0, height), tick, 1, 0, 0, 0, 1);
+      Population.add(peep);
+    }
   }
 
   boolean death() {
@@ -101,10 +124,10 @@ class People {
   }
 
   void baby() {
-    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick,(generation+bro.generation)/2f+1f, (typeA+bro.typeA)/2+floor(random(-3,3)), (typeB+bro.typeB)/2+floor(random(-3,3)), (typeC+bro.typeC)/2+floor(random(-3,3)));
+    People peep=new People((x+bro.x)/2, (y+bro.y)/2, tick, (generation+bro.generation)/2f+1f, (typeA+bro.typeA)/2+floor(random(-3, 3)), (typeB+bro.typeB)/2+floor(random(-3, 3)), (typeC+bro.typeC)/2+floor(random(-3, 3)));
     Population.add(peep);
   }
-  
+
   void interact_scan(int i) { //Gets own id number
     //checks all previous people
 
@@ -112,7 +135,7 @@ class People {
       People person = (People) Population.get(i);
       if (person.cooldown<1) {
         float dist=dist(x, y, person.x, person.y);
-        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(Population.size(),0,1000,1.5f,0.1f);
+        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(Population.size(), 0, 1000, 1.5f, 0.1f);
         if (K>random(1)) {
           state=INTERACTING;
           bro=person;
@@ -122,16 +145,16 @@ class People {
       }
     }
   }
-  
-  void interact(){
-    if(0.01<random(1)){
+
+  void interact() {
+    if (0.01<random(1)) {
       baby();
       state=MOVING;
       bro.state=MOVING;
       bro.cooldown=STD_CD;
       cooldown=STD_CD;
       bro=null;
-    }
+    }x
   }
 
   void wrap() {
@@ -156,11 +179,14 @@ class People {
 
   void display() {
     if (alive == true) { 
-      fill((generation*50)%255,255,255);
-      ellipse(x, y, 20, 20);
+      if (sickness == 1) {
+        fill(255);
+      } else {
+        fill((generation*50)%255, 255, 255);
+        ellipse(x, y, 20, 20);
+      }
     }
   }
-
   private PVector vecNoise(PVector coords) {
     //Accepts PVector of noise coords, and returns PVector of noise in [-PEEP_SPEED, PEEP_SPEED]
     return PVector.mult(new PVector(noise(coords.x)-0.5f, noise(coords.y)-0.5f), 2*SHEEP_SPEED);

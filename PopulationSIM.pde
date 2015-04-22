@@ -27,13 +27,13 @@ void draw() {
   tick++;
   fill(0, p);
   rect(0, 0, width, height);
-  //if (tick <= size) {
-  //  People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
-  //  Population.add(Person);
-  //}
+  if (tick <= size) {
+    People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)), random(0,1));
+    Population.add(person);
+  }
   for (int i = Population.size () - 1; i > -1; i--) {
-    People person = (People) Population.get(i);
-    boolean is_dead = person.life(i);
+    People person2 = (People) Population.get(i);
+    boolean is_dead = person2.life(i);
     if (!is_dead) {
       Population.remove(i);
     }
