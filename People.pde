@@ -171,8 +171,8 @@ class People {
 
   void display() {
     if (alive == true) { 
-      fill((generation*50)%255, 255, 255);
-      ellipse(x, y, 5, 5);
+      PG.fill((generation*50)%255, 255, 255);
+      PG.ellipse(x, y, 15, 15);
     }
   }
 

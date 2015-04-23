@@ -19,7 +19,7 @@ void doCmd() {
       printc("Cleared Population (Genocide)");
     } else  printc("Unrecognised command. Type 'help' for list of commands.", 255);
   } else if (cmds.length==2) {
-    if (cmds[0].equals("mkp")) {
+    if (cmds[0].equals("add")) {
       printc("Made "+str(int(cmds[1]))+" new people.");
       for (int i=0; i<int (cmds[1]); i++) {
         mkPeep();
@@ -39,24 +39,31 @@ void getHist(int dir) {
   }
 }
 
+float fade=0;
 void drawCmd() {
+  GUI.beginDraw();
+  GUI.colorMode(HSB);
+  GUI.rect(0,0,width,height);
+  GUI.background(0,0);
   GUI.noStroke(); 
-  GUI.fill(0); 
+  GUI.fill(0,fade); 
   GUI.rect(0, 0, 450, 40); 
   //stroke(60,30,90);
   GUI.fill(255); 
   String cursor=""; 
   if ((frameCount/60)%2==0)cursor="|"; 
   GUI.text(">"+cmdLine+cursor, 5, 15);
-  GUI.fill(red,255,255,fade);
+  GUI.fill(red,255,255);
   GUI.text(cmsg, 5, 35);
   fade=max(0,fade-1);
+  GUI.endDraw();
+  image(GUI,0,0);
   
 }
 
 
 ///// printc
-float fade=0;
+
 float red=0;
 String cmsg="";
 void printc(String msg){

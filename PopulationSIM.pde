@@ -5,20 +5,26 @@
 //Anthony Catalano-Johnson//
 //Benjamin Welsh//
 int starting = 10;
-int p = 10; 
+int Gfade = 10; 
 int tick=0;
 int size = 100;
 public ArrayList<People> population;
 PGraphics GUI;
+PGraphics PG;
 void setup() {
   size(1280, 755, P2D);
-  noStroke();
-  colorMode(HSB);
-  smooth(8);
+  background(0,12,12);
+  //config peepl graphics
+  PG=createGraphics(displayWidth,displayHeight,P2D);
+  PG.beginDraw();
+  PG.noStroke();
+  PG.colorMode(HSB);
+  PG.smooth(8);
+  PG.endDraw();
   frameRate(1000000);
   population = new ArrayList<People>();
   frame.setResizable(true);
-  GUI=createGraphics(displayWidth,displayHeight,P2D);
+  GUI=createGraphics(displayWidth,displayHeight);
   for (int i = 0; i < starting; i++) {
     mkPeep();
   }
@@ -27,8 +33,10 @@ void setup() {
 void draw() {
   frame.setTitle(str(frameRate));
   tick++;
-  fill(0, p);
-  rect(0, 0, width, height);
+  background(0);
+  PG.beginDraw();
+  PG.fill(0, Gfade);
+  PG.rect(0, 0, width, height);
   //if (tick <= size) {
   //  People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
   //  Population.add(Person);
@@ -40,8 +48,9 @@ void draw() {
       population.remove(i);
     }
   }
-
-  drawCmd();
+  PG.endDraw();
+  image(PG,0,0);
+  if(!mousePressed)drawCmd();
   //println(Population.size())
 }
 
