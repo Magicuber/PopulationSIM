@@ -13,3 +13,10 @@ void mkPeep() {
   population.add(person);
 }
 
+Point getGlobalMouseLocation() {
+  // java.awt.MouseInfo
+  PointerInfo pointerInfo = MouseInfo.getPointerInfo();
+  Point p = pointerInfo.getLocation();
+  return p;
+}
+

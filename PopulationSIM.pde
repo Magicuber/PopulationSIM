@@ -1,9 +1,13 @@
+import java.awt.*;
+import java.awt.event.*;
 //--------------------------------------------------------------------------------
 //--------------------------------MAIN  TAB---------------------------------------
 //--------------------------------------------------------------------------------
 //This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 //Anthony Catalano-Johnson//
 //Benjamin Welsh//
+
+Robot robot;
 int starting = 40;
 int Gfade = 10; 
 int tick=0;
@@ -13,6 +17,13 @@ PGraphics GUI;
 PGraphics PG;
 void setup() {
   size(1280, 755, P2D);
+  try { 
+    robot = new Robot();
+    robot.setAutoDelay(0);
+  } 
+  catch (Exception e) {
+    e.printStackTrace();
+  }
   background(0,12,12);
   //config peepl graphics
   PG=createGraphics(displayWidth,displayHeight,P2D);
@@ -47,6 +58,7 @@ void draw() {
   PG.endDraw();
   image(PG,0,0);
   drawCmd();
+  drawMenu();
   //println(Population.size())
 }
 
