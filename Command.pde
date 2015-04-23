@@ -15,7 +15,7 @@ void doCmd() {
   cmdLine="";
   if (cmds.length==1) {
     if (cmds[0].equals("clear")) {
-      Population = new ArrayList();
+      population = new ArrayList<People>();
       printc("Cleared Population (Genocide)");
     } else  printc("Unrecognised command. Type 'help' for list of commands.", 255);
   } else if (cmds.length==2) {

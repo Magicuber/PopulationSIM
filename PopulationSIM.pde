@@ -8,15 +8,15 @@ int starting = 10;
 int p = 10; 
 int tick=0;
 int size = 100;
-public ArrayList Population;
+public ArrayList<People> population;
 
 void setup() {
-  size(1280, 755);
+  size(1280, 755, P2D);
   noStroke();
   colorMode(HSB);
   smooth(8);
   frameRate(1000000);
-  Population = new ArrayList();
+  population = new ArrayList<People>();
   for (int i = 0; i < starting; i++) {
     mkPeep();
   }
@@ -31,11 +31,11 @@ void draw() {
   //  People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
   //  Population.add(Person);
   //}
-  for (int i = Population.size () - 1; i > -1; i--) {
-    People person = (People) Population.get(i);
+  for (int i = population.size () - 1; i > -1; i--) {
+    People person = population.get(i);
     boolean is_dead = person.life(i);
     if (!is_dead) {
-      Population.remove(i);
+      population.remove(i);
     }
   }
 
