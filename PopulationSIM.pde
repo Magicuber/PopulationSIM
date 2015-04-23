@@ -9,7 +9,7 @@ int p = 10;
 int tick=0;
 int size = 100;
 public ArrayList<People> population;
-
+PGraphics GUI;
 void setup() {
   size(1280, 755, P2D);
   noStroke();
@@ -17,6 +17,8 @@ void setup() {
   smooth(8);
   frameRate(1000000);
   population = new ArrayList<People>();
+  frame.setResizable(true);
+  GUI=createGraphics(displayWidth,displayHeight,P2D);
   for (int i = 0; i < starting; i++) {
     mkPeep();
   }
@@ -40,7 +42,7 @@ void draw() {
   }
 
   drawCmd();
-  //println(Population.size());
+  //println(Population.size())
 }
 
 

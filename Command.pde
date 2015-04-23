@@ -40,17 +40,18 @@ void getHist(int dir) {
 }
 
 void drawCmd() {
-  noStroke(); 
-  fill(0); 
-  rect(0, 0, 450, 40); 
+  GUI.noStroke(); 
+  GUI.fill(0); 
+  GUI.rect(0, 0, 450, 40); 
   //stroke(60,30,90);
-  fill(255); 
+  GUI.fill(255); 
   String cursor=""; 
   if ((frameCount/60)%2==0)cursor="|"; 
-  text(">"+cmdLine+cursor, 5, 15);
-  fill(red,255,255,fade);
-  text(cmsg, 5, 35);
-  //fade=max(0,fade-1);
+  GUI.text(">"+cmdLine+cursor, 5, 15);
+  GUI.fill(red,255,255,fade);
+  GUI.text(cmsg, 5, 35);
+  fade=max(0,fade-1);
+  
 }
 
 
