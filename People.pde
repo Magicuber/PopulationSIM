@@ -127,7 +127,7 @@ class People {
       People person = population.get(i);
       if (person.cooldown<1) {
         float dist=dist(x, y, person.x, person.y);
-        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(population.size(), 0, 1000, 1.5f, 0.1f);
+        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(population.size(), 0, 100000, 1.5f, 0.1f);
         if (K>random(1)) {
           state=INTERACTING;
           bro=person;
@@ -172,7 +172,7 @@ class People {
   void display() {
     if (alive == true) { 
       fill((generation*50)%255, 255, 255);
-      ellipse(x, y, 20, 20);
+      ellipse(x, y, 5, 5);
     }
   }
 

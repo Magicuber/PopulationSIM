@@ -4,10 +4,10 @@
 //This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 //Anthony Catalano-Johnson//
 //Benjamin Welsh//
-int starting = 10;
+int starting = 50;
 int p = 10; 
 int tick=0;
-int size = 100;
+int size = 0;
 public ArrayList<People> population;
 
 void setup() {
