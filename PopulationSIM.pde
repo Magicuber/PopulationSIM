@@ -4,7 +4,7 @@
 //This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 //Anthony Catalano-Johnson//
 //Benjamin Welsh//
-int starting = 10;
+int starting = 40;
 int Gfade = 10; 
 int tick=0;
 int size = 100;
@@ -31,16 +31,12 @@ void setup() {
 }
 
 void draw() {
-  frame.setTitle(str(frameRate));
+  frame.setTitle("People: "+population.size()+"  FPS: "+nf(frameRate,4,1));
   tick++;
   background(0);
   PG.beginDraw();
   PG.fill(0, Gfade);
   PG.rect(0, 0, width, height);
-  //if (tick <= size) {
-  //  People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0,10)), floor(random(0,10)), floor(random(0,10)));
-  //  Population.add(Person);
-  //}
   for (int i = population.size () - 1; i > -1; i--) {
     People person = population.get(i);
     boolean is_dead = person.life(i);
@@ -50,7 +46,7 @@ void draw() {
   }
   PG.endDraw();
   image(PG,0,0);
-  if(!mousePressed)drawCmd();
+  drawCmd();
   //println(Population.size())
 }
 
@@ -66,6 +62,7 @@ void keyPressed() {
       doCmd();
     } else {
       cmdLine+=key;
+      fade=255;
     }
   }
   if (keyCode==DOWN)getHist(-1);
