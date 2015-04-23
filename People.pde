@@ -135,7 +135,7 @@ class People {
       People person = (People) Population.get(i);
       if (person.cooldown<1) {
         float dist=dist(x, y, person.x, person.y);
-        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(Population.size(), 0, 1000, 1.5f, 0.1f);
+        float K=(clamp(0, INTER_DIST, INTER_DIST-dist)/INTER_K) * map(Population.size(), 0, 500, 1.5f, 0.1f);
         if (K>random(1)) {
           state=INTERACTING;
           bro=person;
@@ -154,7 +154,7 @@ class People {
       bro.cooldown=STD_CD;
       cooldown=STD_CD;
       bro=null;
-    }x
+    }
   }
 
   void wrap() {
