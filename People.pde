@@ -81,6 +81,9 @@ class People {
     typeB=(p1.typeB+p2.typeB)/2+floor(random(-3, 3));
     typeC=(p1.typeC+p2.typeC)/2+floor(random(-3, 3));
   }
+  /*Kill(People person) {
+    death() = true;
+  }*/
 
   boolean life(int id) {
     display();

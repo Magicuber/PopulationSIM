@@ -12,6 +12,9 @@ void mkPeep() {
   People person = new People(random(0, width), random(0, height), tick, 1, floor(random(0, 10)), floor(random(0, 10)), floor(random(0, 10)));
   population.add(person);
 }
+void klPeep() {
+ 
+}
 
 Point getGlobalMouseLocation() {
   // java.awt.MouseInfo
